@@ -1,7 +1,3 @@
-Here's a **README.md** file for your **LibraryVueProject** repository:
-
----
-
 # 📚 Library Vue Project
 
 This is a **Vue.js-based library management system** designed to handle book records, user management, and borrowing history in an intuitive web interface.
@@ -15,7 +11,6 @@ This is a **Vue.js-based library management system** designed to handle book rec
 - [Installation](#installation)
 - [Usage](#usage)
 - [Project Structure](#project-structure)
-- [Contributing](#contributing)
 - [License](#license)
 
 ## Overview
@@ -63,7 +58,7 @@ This is a **Vue.js-based library management system** designed to handle book rec
 
 3. **Run the development server**
    ```bash
-   npm run dev
+   npm run start
    ```
 
 4. **Open the application**
@@ -95,23 +90,6 @@ LibraryVueProject/
 ├── vite.config.js        # Vite configuration
 └── README.md             # Documentation
 ```
-
-## Contributing
-
-1. **Fork** the repository  
-2. **Create a feature branch**:  
-   ```bash
-   git checkout -b feature/my-feature
-   ```
-3. **Commit your changes**:  
-   ```bash
-   git commit -m "Added new feature"
-   ```
-4. **Push the branch**:  
-   ```bash
-   git push origin feature/my-feature
-   ```
-5. **Open a Pull Request**  
 
 ## License
 

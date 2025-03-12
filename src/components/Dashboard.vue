@@ -1,8 +1,6 @@
 <template>
   <h1>Book Dashboard</h1>
-  <nav>
-    <button @click="showReadBooks = !showReadBooks">{{ buttonText }}</button>
-  </nav>
+  <button @click="showReadBooks = !showReadBooks">{{ buttonText }}</button>
   <component :is="currentComponent" v-bind="componentProps" />
 </template>
 
@@ -19,7 +17,7 @@ export default {
   },
   computed: {
     buttonText() {
-      return this.showReadBooks ? 'Show all books' : 'Books read';
+      return this.showReadBooks ? 'Show all books' : 'Books readed';
     },
     selectedBook() {
       const bookId = this.$route.query.id;

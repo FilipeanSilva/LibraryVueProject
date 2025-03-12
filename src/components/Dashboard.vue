@@ -1,10 +1,20 @@
 <template>
   <h1>Book Dashboard</h1>
   <button @click="showReadBooks = !showReadBooks">{{ buttonText }}</button>
+
+  <input type="text" v-model="searchQuery" placeholder="Search books..." />
+
+  <ul v-if="filteredBooks.length">
+    <li v-for="book in filteredBooks" :key="book.id">
+      {{ book.title }}
+    </li>
+  </ul>
+
   <component :is="currentComponent" v-bind="componentProps" />
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import BookList from './BookList.vue';
 import BookDetails from './BookDetails.vue';
 
@@ -13,9 +23,18 @@ export default {
   data() {
     return {
       showReadBooks: false,
+      searchQuery: '',
     };
   },
   computed: {
+    ...mapGetters(['getBooks']),
+    filteredBooks() {
+      return !this.searchQuery.trim()
+        ? []
+        : this.getBooks.filter((book) =>
+            book.title.toLowerCase().includes(this.searchQuery.toLowerCase())
+          );
+    },
     buttonText() {
       return this.showReadBooks ? 'Show all books' : 'Books readed';
     },
@@ -38,7 +57,8 @@ export default {
     },
   },
   components: { BookList, BookDetails },
+  mounted() {
+    this.$store.dispatch('getProductItems'); // Carrega os livros ao montar o componente
+  },
 };
 </script>
-
-<style></style>

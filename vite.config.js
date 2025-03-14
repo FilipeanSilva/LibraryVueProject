@@ -5,4 +5,7 @@ import vue from '@vitejs/plugin-vue'
 export default defineConfig({
   plugins: [vue()],
   base: '/LibraryVueProject/',  // <-- Change this to match your repo name
+  build: {
+    outDir: 'dist' // Ensure output is in 'dist/'
+  }
 })

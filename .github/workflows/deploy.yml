@@ -5,14 +5,12 @@ on:
     branches:
       - main
 
-# Add this permissions block
 permissions:
   contents: write
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -20,36 +18,14 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'   # or 18, etc.
-
+          node-version: '18'
+          
       - name: Install dependencies
         run: npm install
-
+        
       - name: Build the project
         run: npm run build
-
-      - name: Upload production-ready build files
-        uses: actions/upload-artifact@v4
-        with:
-          name: build
-          path: dist/
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    # You can also set permissions at the job level if preferred
-    permissions:
-      contents: write
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Download build files
-        uses: actions/download-artifact@v4
-        with:
-          name: build
-          path: dist
-
+        
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:

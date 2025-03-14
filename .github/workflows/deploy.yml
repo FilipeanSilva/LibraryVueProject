@@ -24,7 +24,7 @@ jobs:
         run: npm run build
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3.1.2 # Update this to the correct version if necessary
+        uses: actions/upload-artifact@v3 # Update to the latest version
         with:
           name: dist
           path: dist

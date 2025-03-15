@@ -18,8 +18,8 @@
           <img
             :src="
               book.alreadyRead
-                ? `src/assets/icons/yes.png`
-                : `src/assets/icons/no.png`
+                ? `/src/assets/icons/yes.png`
+                : `/src/assets/icons/no.png`
             "
             alt="Is already read"
             :title="book.alreadyRead ? 'Read' : 'Not read'"

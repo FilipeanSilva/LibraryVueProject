@@ -19,11 +19,7 @@ This is a **Vue.js-based library management system** designed to handle book rec
 
 ## Features
 
-✔️ **Book Management** – Add, edit, and delete books in the library.  
-✔️ **User Management** – Manage library users (admin, librarian, members).  
-✔️ **Borrowing System** – Track borrowed and returned books.  
-✔️ **Responsive Design** – Works on desktop and mobile devices.  
-✔️ **State Management** – Utilizes Vuex (or Pinia) for efficient state handling.  
+✔️ **Book Management** – View details and delete books in the library.   
 
 ## Technologies
 

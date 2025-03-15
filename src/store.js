@@ -25,7 +25,7 @@ const mutations = {
 
 const actions = {
   getProductItems(context) {
-    fetch('http://localhost:3000/books')
+    fetch('/Data/data.json')
       .then((resp) => resp.json())
       .then((data) => context.commit('UPDATE_BOOKS', data))
       .catch((err) => {

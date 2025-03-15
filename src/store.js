@@ -25,24 +25,10 @@ const mutations = {
 
 const actions = {
   getProductItems(context) {
-    fetch('./Data/data.json')
+    fetch('/Data/data.json')
       .then((resp) => resp.json())
-      .then((data) => context.commit('UPDATE_BOOKS', data.books))
-      .catch((err) => {
-        console.error('Error while fetching books: ' + err.message);
-        // Fallback to some sample data
-        const sampleBooks = [
-          {
-            id: 1,
-            title: 'Sample Book',
-            author: 'Sample Author',
-            imageUrl: 'angular.jpg',
-            alreadyRead: true,
-          },
-          // Add more sample entries
-        ];
-        context.commit('UPDATE_BOOKS', data.books);
-      });
+      .then((data) => context.commit('UPDATE_BOOKS', data))
+      .catch((err) => 'Error while fetching books: ' + err.message);
   },
 
   deleteBook(context, payload) {

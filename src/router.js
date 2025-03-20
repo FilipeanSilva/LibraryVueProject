@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 import Home from './components/Home.vue';
 import About from './components/About.vue';
 import Dashboard from './components/Dashboard.vue';
@@ -9,11 +9,11 @@ const routes = [
   { path: '/home', redirect: '/' },
   { path: '/about', component: About, name: 'about' },
   { path: '/dashboard', component: Dashboard, name: 'dashboard' },
-  { path: '/:pathmatch(.*)*', component: NotFound },
+  { path: '/:pathMatch(.*)*', component: NotFound },
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes,
 });
 

@@ -6,7 +6,7 @@
     <div class="book-author">{{ book.author }}</div>
     <div class="book-cover">
       <img
-        :src="`${import.meta.env.BASE_URL}assets/livros/${book.imageUrl}`"
+        :src="`/livros/${book.imageUrl}`"
         :alt="book.title"
         :title="book.title"
       />
@@ -30,8 +30,9 @@
     <div class="book-delete">
       <button @click="deleteBook(book.id)">Delete</button>
     </div>
+    
+    <h3 v-if="$route.query.id ">Nome (query): {{ $route.query.id }}</h3>
 
-    <h3 v-if="$route.query.id">Nome (query): {{ $route.query.id }}</h3>
   </article>
 </template>
 

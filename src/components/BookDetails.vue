@@ -20,7 +20,7 @@ export default {
   props: ['book'],
   computed: {
     bookImageSrc() {
-      return `src/assets/livros/${this.book.imageUrl}`;
+      return `${import.meta.env.BASE_URL}livros/${this.book.imageUrl}`;
     },
     showBackButton() {
       return this.$route.query.id !== undefined;

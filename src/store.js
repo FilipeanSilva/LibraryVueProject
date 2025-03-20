@@ -16,10 +16,17 @@ const mutations = {
     let filteredBooks = state.books.filter((book) => book.id === id);
     state.book = filteredBooks.length > 0 ? filteredBooks[0] : null;
   },
-
   GET_BOOKS_READED(state) {
     let filteredBooks = state.books.filter((book) => book.alreadyRead === true);
     state.book = filteredBooks.length > 0 ? filteredBooks[0] : null;
+  },
+  // New mutation for toggling read status
+  TOGGLE_READ_STATUS(state, id) {
+    const bookIndex = state.books.findIndex((book) => book.id == id);
+    if (bookIndex !== -1) {
+      // Toggle the alreadyRead property
+      state.books[bookIndex].alreadyRead = !state.books[bookIndex].alreadyRead;
+    }
   },
 };
 
@@ -46,6 +53,11 @@ const actions = {
 
   getBooksReaded(context, payload) {
     context.commit('GET_BOOKS_READED', payload);
+  },
+
+  // New action for toggling read status
+  toggleReadStatus(context, id) {
+    context.commit('TOGGLE_READ_STATUS', id);
   },
 };
 

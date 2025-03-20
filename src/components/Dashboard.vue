@@ -19,16 +19,6 @@
       </div>
     </div>
     
-    <div class="search-results" v-if="filteredBooks.length">
-      <h3>Search Results</h3>
-      <ul class="results-list">
-        <li v-for="book in filteredBooks" :key="book.id" class="result-item">
-          <span class="result-title">{{ book.title }}</span>
-          <span class="result-author">by {{ book.author }}</span>
-        </li>
-      </ul>
-    </div>
-    
     <component :is="currentComponent" v-bind="componentProps" />
   </div>
 </template>
@@ -49,11 +39,23 @@ export default {
   computed: {
     ...mapGetters(['getBooks']),
     filteredBooks() {
-      return !this.searchQuery.trim()
-        ? []
-        : this.getBooks.filter((book) =>
-            book.title.toLowerCase().includes(this.searchQuery.toLowerCase())
-          );
+      if (!this.searchQuery.trim()) {
+        // If search is empty, return the appropriate book list based on showReadBooks
+        return this.showReadBooks
+          ? this.$store.getters.getBooksReaded
+          : this.$store.getters.getBooks;
+      }
+      
+      // Filter books based on search query
+      const query = this.searchQuery.toLowerCase().trim();
+      const booksToFilter = this.showReadBooks
+          ? this.$store.getters.getBooksReaded
+          : this.$store.getters.getBooks;
+          
+      return booksToFilter.filter(book => 
+        book.title.toLowerCase().includes(query) || 
+        book.author.toLowerCase().includes(query)
+      );
     },
     buttonText() {
       return this.showReadBooks ? 'Show all books' : 'Books read';
@@ -62,18 +64,13 @@ export default {
       const bookId = this.$route.query.id;
       return this.$store.getters.getBookById(bookId);
     },
-    visibleBookList() {
-      return this.showReadBooks
-        ? this.$store.getters.getBooksReaded
-        : this.$store.getters.getBooks;
-    },
     currentComponent() {
       return this.$route.query.id ? BookDetails : BookList;
     },
     componentProps() {
       return this.$route.query.id
         ? { book: this.selectedBook }
-        : { books: this.visibleBookList };
+        : { books: this.filteredBooks }; // Pass filteredBooks instead of visibleBookList
     },
   },
   components: { BookList, BookDetails },
@@ -152,53 +149,6 @@ export default {
 
 .toggle-button:hover {
   background-color: #2d3748;
-}
-
-.search-results {
-  background-color: #f8fafc;
-  border-radius: var(--border-radius);
-  padding: 1.5rem;
-  border-left: 4px solid var(--accent-color);
-}
-
-.search-results h3 {
-  margin-top: 0;
-  color: var(--primary-color);
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
-}
-
-.results-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.result-item {
-  padding: 0.8rem;
-  border-bottom: 1px solid #e2e8f0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: background-color 0.3s ease;
-}
-
-.result-item:last-child {
-  border-bottom: none;
-}
-
-.result-item:hover {
-  background-color: #edf2f7;
-}
-
-.result-title {
-  font-weight: 600;
-  color: var(--text-color);
-}
-
-.result-author {
-  color: #718096;
-  font-style: italic;
 }
 
 @media (max-width: 768px) {

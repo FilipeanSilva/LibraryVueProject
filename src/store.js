@@ -1,5 +1,5 @@
 import { createStore } from 'vuex';
-
+import data from '../Data/data.json' assert { type: 'json' };
 const state = {
   books: [],
 };
@@ -28,7 +28,12 @@ const actions = {
     fetch('http://localhost:3000/books')
       .then((resp) => resp.json())
       .then((data) => context.commit('UPDATE_BOOKS', data))
-      .catch((err) => 'Error while fetching books: ' + err.message);
+      .catch((err) => {
+        console.warn(
+          `Error fetching books using API: "${err.message}". Using local data`
+        );
+        context.commit('UPDATE_BOOKS', data.books);
+      });
   },
 
   deleteBook(context, payload) {

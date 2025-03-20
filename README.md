@@ -5,35 +5,21 @@ This is a **Vue.js-based library management system** designed to handle book rec
 ## Table of Contents
 
 - [Overview](#overview)
-- [Features](#features)
 - [Technologies](#technologies)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
-- [Usage](#usage)
 - [Project Structure](#project-structure)
-- [License](#license)
+- [Contact](#contact)
 
 ## Overview
 
-**LibraryVueProject** is a **single-page application (SPA)** built with **Vue.js** that allows users to **browse, add, edit, and manage library books**. It can be extended with backend integrations for persistent data storage.
-
-## Features
-
-✔️ **Book Management** – Add, edit, and delete books in the library.  
-✔️ **User Management** – Manage library users (admin, librarian, members).  
-✔️ **Borrowing System** – Track borrowed and returned books.  
-✔️ **Responsive Design** – Works on desktop and mobile devices.  
-✔️ **State Management** – Utilizes Vuex (or Pinia) for efficient state handling.  
+**LibraryVueProject** is a **single-page application (SPA)** built with **Vue.js**.
 
 ## Technologies
 
 - **Vue.js** – Frontend framework  
 - **Vue Router** – For client-side navigation  
-- **Vuex / Pinia** – State management (depending on implementation)  
-- **Tailwind CSS** – Styling  
-- **Axios** – HTTP requests (if connecting to an API)  
-- **Node.js & Express (optional)** – Backend integration (if applicable)  
-- **MongoDB / Firebase / PostgreSQL (optional)** – For storing book and user data  
+- **Node.js & Express (optional)** – Backend integration 
 
 ## Prerequisites
 
@@ -64,12 +50,6 @@ This is a **Vue.js-based library management system** designed to handle book rec
 4. **Open the application**
    Navigate to `http://localhost:5173/` (or the port displayed in your terminal).
 
-## Usage
-
-- **Adding Books**: Use the dashboard to enter book details.  
-- **Editing Books**: Modify book information via the admin panel.  
-- **Borrowing Books**: Assign books to users and track due dates.  
-- **Returning Books**: Mark books as returned and update availability status.  
 
 ## Project Structure
 
@@ -90,10 +70,6 @@ LibraryVueProject/
 ├── vite.config.js        # Vite configuration
 └── README.md             # Documentation
 ```
-
-## License
-
-📜 **MIT License** – Free to use and modify.
 
 ## Contact
 

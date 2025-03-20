@@ -5,22 +5,14 @@
     </button>
     <div class="book-author">{{ book.author }}</div>
     <div class="book-cover">
-      <img
-        :src="`/livros/${book.imageUrl}`"
-        :alt="book.title"
-        :title="book.title"
-      />
+      <img :src="imagePath" :alt="book.title" :title="book.title" />
     </div>
     <div class="book-read-state">
       <p>
         Already read:
         <span>
           <img
-            :src="
-              book.alreadyRead
-                ? `src/assets/icons/yes.png`
-                : `src/assets/icons/no.png`
-            "
+            :src="book.alreadyRead ? `icons/yes.png` : `icons/no.png`"
             alt="Is already read"
             :title="book.alreadyRead ? 'Read' : 'Not read'"
           />
@@ -30,9 +22,8 @@
     <div class="book-delete">
       <button @click="deleteBook(book.id)">Delete</button>
     </div>
-    
-    <h3 v-if="$route.query.id ">Nome (query): {{ $route.query.id }}</h3>
 
+    <h3 v-if="$route.query.id">Nome (query): {{ $route.query.id }}</h3>
   </article>
 </template>
 
@@ -40,6 +31,11 @@
 export default {
   name: 'Book',
   props: ['book'],
+  computed: {
+    imagePath() {
+      return `${import.meta.env.BASE_URL}livros/${this.book.imageUrl}`;
+    },
+  },
   methods: {
     deleteBook(id) {
       this.$store.dispatch('deleteBook', id);
